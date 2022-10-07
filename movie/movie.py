@@ -19,9 +19,21 @@ mutation = MutationType()
 # MY_TYPES
 movie = ObjectType('Movie')
 actor = ObjectType('Actor')
+message = ObjectType('Message')
+
+# --------------------------------------------------------
+
+# MOVIE_WITH_DIRECTOR
+query.set_field('movie_with_director', r.movie_with_director)
 
 # MOVIE_WITH_ID
 query.set_field('movie_with_id', r.movie_with_id)
+
+# ALL_MOVIES
+query.set_field('list_movies', r.list_movies)
+
+# MOVIE_WITH_TITLE
+query.set_field('movie_with_title', r.movie_with_title)
 
 # ACTOR_WITH_ID
 query.set_field('actor_with_id', r.actor_with_id)
@@ -29,13 +41,19 @@ query.set_field('actor_with_id', r.actor_with_id)
 # UPDATE_MOVIE_RATE
 mutation.set_field('update_movie_rate', r.update_movie_rate)
 
+# CREATE_MOVIE
+mutation.set_field('create_movie', r.create_movie)
+
+# DELETE_MOVIE
+mutation.set_field('delete_movie', r.delete_movie)
+
 # ASSOCIATION ACTOR IN MOVIE
 movie.set_field('actors', r.resolve_actors_in_movie)
 
 
 
 # SCHEMA ASSOCIATION
-schema = make_executable_schema(type_defs, movie, query, mutation, actor)
+schema = make_executable_schema(type_defs, movie, query, mutation, actor, message)
 
 ###
 
